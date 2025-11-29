@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  bot-gpt-api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:///./bot_gpt.db
+      - GROQ_API_KEY=${GROQ_API_KEY}
+    volumes:
+      - ./bot_gpt.db:/app/bot_gpt.db
+    restart: unless-stopped
+
